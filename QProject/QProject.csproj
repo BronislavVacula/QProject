@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Win.Design" Version="22.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="UI\Administration\" />
+    <Folder Include="UI\Agenda\Detail\" />
+    <Folder Include="UI\Agenda\Settings\" />
+    <Folder Include="UI\Projects\Reports\" />
+    <Folder Include="UI\Stocks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QProject.Base\QProject.Base.csproj" />
+    <ProjectReference Include="..\QProject.BL\QProject.BL.csproj" />
+  </ItemGroup>
+
+</Project>
