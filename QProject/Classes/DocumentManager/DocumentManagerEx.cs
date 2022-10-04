@@ -4,6 +4,7 @@ using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraEditors;
 using QProject.Base;
 using QProject.Base.Attributes;
+using QProject.Templates.Controls;
 using QProject.Templates.Interfaces;
 using Shared.Extensions;
 
@@ -93,9 +94,18 @@ namespace QProject.Classes
 
                     if (groupElement != null)
                     {
-                        CreateGroupItemAccordionElement(groupElement, openedDocument, openedDocument.ToString());
+                        string documentCaption = openedDocument.ToString();
 
-                        _tabbedView.AddDocument(openedDocument, openedDocument.ToString());
+                        if(openedDocument is not ucTemplateDetail 
+                            && documentAttribute != null
+                            && !string.IsNullOrEmpty(documentAttribute.DocumentName))
+                        {
+                            documentCaption = documentAttribute.DocumentName;
+                        }
+
+                        CreateGroupItemAccordionElement(groupElement, openedDocument, documentCaption);
+
+                        _tabbedView.AddDocument(openedDocument, documentCaption);
                         _tabbedView.ActivateDocument(openedDocument);
                     }
                 }
@@ -125,29 +135,9 @@ namespace QProject.Classes
 
                         if (document.Control.Tag is object[] documentParams)
                         {
-                            if (documentParams.Length == constructorParameters.Length)
+                            if (documentParams.Length == constructorParameters.Length && AreConstructorsSame(documentParams, constructorParameters))
                             {
-                                bool isSuccess = true;
-
-                                for (int i = 0; i < documentParams.Length; i++)
-                                {
-                                    if (documentParams[i] is Entity documentEntity && constructorParameters[i] is Entity newEntity)
-                                    {
-                                        if (documentEntity.GetType() != newEntity.GetType() || documentEntity.Id != newEntity.Id)
-                                        {
-                                            isSuccess = false;
-                                        }
-                                    }
-                                    else if (documentParams[i] != constructorParameters[i])
-                                    {
-                                        isSuccess = false;
-                                    }
-                                }
-
-                                if (isSuccess)
-                                {
-                                    return document.Control as UserControl;
-                                }
+                                return document.Control as UserControl;
                             }
                         }
                     }
@@ -155,6 +145,32 @@ namespace QProject.Classes
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Are the constructors same.
+        /// </summary>
+        /// <param name="first">The first.</param>
+        /// <param name="second">The second.</param>
+        /// <returns></returns>
+        private bool AreConstructorsSame(object[] first, object[] second)
+        {
+            for (int i = 0; i < first.Length; i++)
+            {
+                if (first[i] is Entity documentEntity && second[i] is Entity newEntity)
+                {
+                    if (documentEntity.GetType() != newEntity.GetType() || documentEntity.Id != newEntity.Id)
+                    {
+                        return false;
+                    }
+                }
+                else if (first[i] != second[i])
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>

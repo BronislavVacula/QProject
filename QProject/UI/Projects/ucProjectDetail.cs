@@ -54,7 +54,7 @@ namespace QProject.UI.Projects
         }
         #endregion
 
-        #region Methods
+        #region Methods        
         #endregion
 
         #region Event handlers

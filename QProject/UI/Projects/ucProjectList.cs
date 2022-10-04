@@ -1,13 +1,13 @@
-﻿using DevExpress.XtraEditors;
+﻿using QProject.Base;
+using QProject.Base.Attributes;
+using QProject.Base.Constants;
 using QProject.BL.Entities.Projects;
 using QProject.Templates.Controls;
 using QProject.UI.Projects.Forms;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace QProject.UI.Projects
 {
+    [Document(GroupName = DocumentManagerConstants.PROJECT_MANAGEMENT, DocumentName = "Přehled projektů")]
     public partial class ucProjectList : ucTemplateList
     {
         #region Properties and fields        
@@ -24,6 +24,25 @@ namespace QProject.UI.Projects
         public ucProjectList()
         {
             InitializeComponent();
+            Init();
+        }
+        #endregion
+
+        #region Methods        
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        private void Init()
+        {
+            LoadContent();
+        }
+
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        private void LoadContent()
+        {
+
         }
         #endregion
 
@@ -40,6 +59,50 @@ namespace QProject.UI.Projects
             if (newProjectDialog.ShowDialog() == DialogResult.OK)
             {
                 projects.Add(newProjectDialog.Result);
+
+                gvProjects.RefreshData();
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnPreview control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            if (gvProjects.GetFocusedRow() is Project project)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnEdit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (gvProjects.GetFocusedRow() is Project project)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnRemove control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (gvProjects.GetFocusedRow() is Project project)
+            {
+                EntityManager.DeleteEntity(project);
+
+                if (projects.Contains(project))
+                    projects.Remove(project);
 
                 gvProjects.RefreshData();
             }

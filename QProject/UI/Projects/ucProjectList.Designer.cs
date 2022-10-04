@@ -57,10 +57,10 @@
             this.gcDeadLine = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcPreview = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcEdit = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcRemove = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnPreview = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gcEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gcRemove = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnRemove = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelActionBar)).BeginInit();
             this.panelActionBar.SuspendLayout();
@@ -235,6 +235,16 @@
             this.gcPreview.VisibleIndex = 10;
             this.gcPreview.Width = 25;
             // 
+            // btnPreview
+            // 
+            this.btnPreview.AutoHeight = false;
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            this.btnPreview.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
+            // 
             // gcEdit
             // 
             this.gcEdit.Caption = "gridColumn6";
@@ -246,6 +256,16 @@
             this.gcEdit.Visible = true;
             this.gcEdit.VisibleIndex = 11;
             this.gcEdit.Width = 25;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.AutoHeight = false;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            this.btnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // gcRemove
             // 
@@ -259,24 +279,6 @@
             this.gcRemove.VisibleIndex = 12;
             this.gcRemove.Width = 25;
             // 
-            // btnPreview
-            // 
-            this.btnPreview.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
-            this.btnPreview.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
-            this.btnEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
             // btnRemove
             // 
             this.btnRemove.AutoHeight = false;
@@ -285,6 +287,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // ucProjectList
             // 

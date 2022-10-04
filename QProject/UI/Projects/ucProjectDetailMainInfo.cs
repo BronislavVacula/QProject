@@ -141,5 +141,8 @@ namespace QProject.UI.Projects
             base.RollbackChanges();
         }
         #endregion
+
+        #region Event handlers
+        #endregion
     }
 }
