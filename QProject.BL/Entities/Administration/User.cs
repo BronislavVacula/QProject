@@ -1,8 +1,10 @@
 ﻿using QProject.Base;
 using QProject.Base.Enums;
+using Shared.Attributes;
 
 namespace QProject.BL.Entities.Administration
 {
+    [DatabaseTable(TableName = "users")]
     public class User : Entity
     {
         /// <summary>
@@ -54,6 +56,18 @@ namespace QProject.BL.Entities.Administration
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="User"/> is activated.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if activated; otherwise, <c>false</c>.
+        /// </value>
+        public bool Activated
+        {
+            get => GetPropertyValue<bool>();
+            set => SetPropertyValue(value);
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="User"/> class.
         /// </summary>
         public User()
@@ -62,6 +76,7 @@ namespace QProject.BL.Entities.Administration
             CreateProperty<string?>(nameof(Password), string.Empty);
             CreateProperty<string?>(nameof(Email), string.Empty);
             CreateProperty<NotificationType>(nameof(NotificationType), NotificationType.Email);
+            CreateProperty<bool>(nameof(Activated), false);
         }
     }
 }

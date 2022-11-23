@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using QProject.Base.DatabaseConnection;
 using QProject.Classes;
+using QProject.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,8 +31,19 @@ namespace QProject
         /// </summary>
         private void Init()
         {
+            InitProfileSelection();
             InitDatabaseConnection();
             InitDocumentManager();
+        }
+
+        /// <summary>
+        /// Initializes the profile selection.
+        /// </summary>
+        private void InitProfileSelection()
+        {
+            using var profileSelectionDialog = new fmProfileSelection();
+
+            profileSelectionDialog.ShowDialog();
         }
 
         /// <summary>

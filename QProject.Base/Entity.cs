@@ -133,6 +133,14 @@ namespace QProject.Base
                 property.IsInitialized = true;
             }
         }
+
+        /// <summary>
+        /// Saves this instance.
+        /// </summary>
+        public void Save()
+        {
+            EntityManager.SaveEntity(this);
+        }
         #endregion
     }
 }

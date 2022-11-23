@@ -23,7 +23,7 @@ namespace QProject.Classes.Validation.Rules
             {
                 if(control is TextEdit textEdit)
                 {
-                    return string.IsNullOrEmpty(textEdit.EditValue.ToString());
+                    return !string.IsNullOrEmpty(textEdit.EditValue.ToString());
                 }
 
                 return true;

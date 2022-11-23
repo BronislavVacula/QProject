@@ -30,50 +30,56 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmProfileDetail));
             this.groupDatabase = new DevExpress.XtraEditors.GroupControl();
-            this.groupMailSettings = new DevExpress.XtraEditors.GroupControl();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
-            this.labelDatabaseServer = new DevExpress.XtraEditors.LabelControl();
-            this.teDatabaseServer = new DevExpress.XtraEditors.TextEdit();
-            this.labelDatabasePort = new DevExpress.XtraEditors.LabelControl();
-            this.seDatabasePort = new DevExpress.XtraEditors.SpinEdit();
-            this.labelDatabaseName = new DevExpress.XtraEditors.LabelControl();
-            this.teDatabaseName = new DevExpress.XtraEditors.TextEdit();
-            this.labelDatabaseUsername = new DevExpress.XtraEditors.LabelControl();
-            this.teDatabaseUsername = new DevExpress.XtraEditors.TextEdit();
+            this.teDatabasePassword = new DevExpress.XtraEditors.TextEdit();
             this.labelDatabasePassword = new DevExpress.XtraEditors.LabelControl();
-            this.teDatabasePort = new DevExpress.XtraEditors.TextEdit();
+            this.teDatabaseUsername = new DevExpress.XtraEditors.TextEdit();
+            this.labelDatabaseUsername = new DevExpress.XtraEditors.LabelControl();
+            this.teDatabaseName = new DevExpress.XtraEditors.TextEdit();
+            this.labelDatabaseName = new DevExpress.XtraEditors.LabelControl();
+            this.seDatabasePort = new DevExpress.XtraEditors.SpinEdit();
+            this.labelDatabasePort = new DevExpress.XtraEditors.LabelControl();
+            this.teDatabaseServer = new DevExpress.XtraEditors.TextEdit();
+            this.labelDatabaseServer = new DevExpress.XtraEditors.LabelControl();
+            this.groupMailSettings = new DevExpress.XtraEditors.GroupControl();
+            this.teSMTPSenderEmail = new DevExpress.XtraEditors.TextEdit();
+            this.labelSMTPSender = new DevExpress.XtraEditors.LabelControl();
+            this.teSMTPPassword = new DevExpress.XtraEditors.TextEdit();
+            this.labelSMTPPassword = new DevExpress.XtraEditors.LabelControl();
+            this.teSMTPUsername = new DevExpress.XtraEditors.TextEdit();
+            this.labelSMTPUsername = new DevExpress.XtraEditors.LabelControl();
+            this.ceEnableSSL = new DevExpress.XtraEditors.CheckEdit();
             this.seSMTPPort = new DevExpress.XtraEditors.SpinEdit();
             this.labelSMTPPort = new DevExpress.XtraEditors.LabelControl();
             this.teSMTPServer = new DevExpress.XtraEditors.TextEdit();
             this.labelSMTPServer = new DevExpress.XtraEditors.LabelControl();
-            this.ceEnableSSL = new DevExpress.XtraEditors.CheckEdit();
-            this.labelSMTPUsername = new DevExpress.XtraEditors.LabelControl();
-            this.teSMTPUsername = new DevExpress.XtraEditors.TextEdit();
-            this.labelSMTPPassword = new DevExpress.XtraEditors.LabelControl();
-            this.teSMTPPassword = new DevExpress.XtraEditors.TextEdit();
-            this.labelSMTPSender = new DevExpress.XtraEditors.LabelControl();
-            this.teSMTPSenderEmail = new DevExpress.XtraEditors.TextEdit();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
+            this.groupBasicSettings = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.teProfileName = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupDatabase)).BeginInit();
             this.groupDatabase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teDatabasePassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseUsername.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seDatabasePort.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseServer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupMailSettings)).BeginInit();
             this.groupMailSettings.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseServer.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.seDatabasePort.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseUsername.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teDatabasePort.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teSMTPSenderEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teSMTPPassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teSMTPUsername.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceEnableSSL.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seSMTPPort.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teSMTPServer.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ceEnableSSL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teSMTPUsername.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teSMTPPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teSMTPSenderEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBasicSettings)).BeginInit();
+            this.groupBasicSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teProfileName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupDatabase
             // 
-            this.groupDatabase.Controls.Add(this.teDatabasePort);
+            this.groupDatabase.Controls.Add(this.teDatabasePassword);
             this.groupDatabase.Controls.Add(this.labelDatabasePassword);
             this.groupDatabase.Controls.Add(this.teDatabaseUsername);
             this.groupDatabase.Controls.Add(this.labelDatabaseUsername);
@@ -84,74 +90,57 @@
             this.groupDatabase.Controls.Add(this.teDatabaseServer);
             this.groupDatabase.Controls.Add(this.labelDatabaseServer);
             this.groupDatabase.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupDatabase.Location = new System.Drawing.Point(0, 0);
+            this.groupDatabase.Location = new System.Drawing.Point(0, 79);
             this.groupDatabase.Name = "groupDatabase";
-            this.groupDatabase.Size = new System.Drawing.Size(494, 129);
+            this.groupDatabase.Size = new System.Drawing.Size(492, 129);
             this.groupDatabase.TabIndex = 0;
             this.groupDatabase.Text = "Databáze";
             // 
-            // groupMailSettings
+            // teDatabasePassword
             // 
-            this.groupMailSettings.Controls.Add(this.teSMTPSenderEmail);
-            this.groupMailSettings.Controls.Add(this.labelSMTPSender);
-            this.groupMailSettings.Controls.Add(this.teSMTPPassword);
-            this.groupMailSettings.Controls.Add(this.labelSMTPPassword);
-            this.groupMailSettings.Controls.Add(this.teSMTPUsername);
-            this.groupMailSettings.Controls.Add(this.labelSMTPUsername);
-            this.groupMailSettings.Controls.Add(this.ceEnableSSL);
-            this.groupMailSettings.Controls.Add(this.seSMTPPort);
-            this.groupMailSettings.Controls.Add(this.labelSMTPPort);
-            this.groupMailSettings.Controls.Add(this.teSMTPServer);
-            this.groupMailSettings.Controls.Add(this.labelSMTPServer);
-            this.groupMailSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupMailSettings.Location = new System.Drawing.Point(0, 129);
-            this.groupMailSettings.Name = "groupMailSettings";
-            this.groupMailSettings.Size = new System.Drawing.Size(494, 178);
-            this.groupMailSettings.TabIndex = 1;
-            this.groupMailSettings.Text = "Zasílání emailů";
+            this.teDatabasePassword.Location = new System.Drawing.Point(242, 97);
+            this.teDatabasePassword.Name = "teDatabasePassword";
+            this.teDatabasePassword.Properties.UseSystemPasswordChar = true;
+            this.teDatabasePassword.Size = new System.Drawing.Size(240, 20);
+            this.teDatabasePassword.TabIndex = 9;
             // 
-            // btnCancel
+            // labelDatabasePassword
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(12, 313);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Zrušit";
+            this.labelDatabasePassword.Location = new System.Drawing.Point(242, 78);
+            this.labelDatabasePassword.Name = "labelDatabasePassword";
+            this.labelDatabasePassword.Size = new System.Drawing.Size(30, 13);
+            this.labelDatabasePassword.TabIndex = 8;
+            this.labelDatabasePassword.Text = "Heslo:";
             // 
-            // btnConfirm
+            // teDatabaseUsername
             // 
-            this.btnConfirm.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.btnConfirm.Location = new System.Drawing.Point(407, 313);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirm.TabIndex = 3;
-            this.btnConfirm.Text = "Potvrdit";
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            this.teDatabaseUsername.Location = new System.Drawing.Point(12, 97);
+            this.teDatabaseUsername.Name = "teDatabaseUsername";
+            this.teDatabaseUsername.Size = new System.Drawing.Size(224, 20);
+            this.teDatabaseUsername.TabIndex = 7;
             // 
-            // labelDatabaseServer
+            // labelDatabaseUsername
             // 
-            this.labelDatabaseServer.Location = new System.Drawing.Point(12, 31);
-            this.labelDatabaseServer.Name = "labelDatabaseServer";
-            this.labelDatabaseServer.Size = new System.Drawing.Size(36, 13);
-            this.labelDatabaseServer.TabIndex = 0;
-            this.labelDatabaseServer.Text = "Server:";
+            this.labelDatabaseUsername.Location = new System.Drawing.Point(12, 78);
+            this.labelDatabaseUsername.Name = "labelDatabaseUsername";
+            this.labelDatabaseUsername.Size = new System.Drawing.Size(90, 13);
+            this.labelDatabaseUsername.TabIndex = 6;
+            this.labelDatabaseUsername.Text = "Uživatelské jméno:";
             // 
-            // teDatabaseServer
+            // teDatabaseName
             // 
-            this.teDatabaseServer.Location = new System.Drawing.Point(12, 50);
-            this.teDatabaseServer.Name = "teDatabaseServer";
-            this.teDatabaseServer.Size = new System.Drawing.Size(224, 20);
-            this.teDatabaseServer.TabIndex = 1;
+            this.teDatabaseName.Location = new System.Drawing.Point(326, 50);
+            this.teDatabaseName.Name = "teDatabaseName";
+            this.teDatabaseName.Size = new System.Drawing.Size(156, 20);
+            this.teDatabaseName.TabIndex = 5;
             // 
-            // labelDatabasePort
+            // labelDatabaseName
             // 
-            this.labelDatabasePort.Location = new System.Drawing.Point(240, 31);
-            this.labelDatabasePort.Name = "labelDatabasePort";
-            this.labelDatabasePort.Size = new System.Drawing.Size(24, 13);
-            this.labelDatabasePort.TabIndex = 2;
-            this.labelDatabasePort.Text = "Port:";
+            this.labelDatabaseName.Location = new System.Drawing.Point(326, 31);
+            this.labelDatabaseName.Name = "labelDatabaseName";
+            this.labelDatabaseName.Size = new System.Drawing.Size(82, 13);
+            this.labelDatabaseName.TabIndex = 4;
+            this.labelDatabaseName.Text = "Název databáze:";
             // 
             // seDatabasePort
             // 
@@ -167,51 +156,103 @@
             this.seDatabasePort.Size = new System.Drawing.Size(78, 20);
             this.seDatabasePort.TabIndex = 3;
             // 
-            // labelDatabaseName
+            // labelDatabasePort
             // 
-            this.labelDatabaseName.Location = new System.Drawing.Point(326, 31);
-            this.labelDatabaseName.Name = "labelDatabaseName";
-            this.labelDatabaseName.Size = new System.Drawing.Size(82, 13);
-            this.labelDatabaseName.TabIndex = 4;
-            this.labelDatabaseName.Text = "Název databáze:";
+            this.labelDatabasePort.Location = new System.Drawing.Point(240, 31);
+            this.labelDatabasePort.Name = "labelDatabasePort";
+            this.labelDatabasePort.Size = new System.Drawing.Size(24, 13);
+            this.labelDatabasePort.TabIndex = 2;
+            this.labelDatabasePort.Text = "Port:";
             // 
-            // teDatabaseName
+            // teDatabaseServer
             // 
-            this.teDatabaseName.Location = new System.Drawing.Point(326, 50);
-            this.teDatabaseName.Name = "teDatabaseName";
-            this.teDatabaseName.Size = new System.Drawing.Size(156, 20);
-            this.teDatabaseName.TabIndex = 5;
+            this.teDatabaseServer.Location = new System.Drawing.Point(12, 50);
+            this.teDatabaseServer.Name = "teDatabaseServer";
+            this.teDatabaseServer.Size = new System.Drawing.Size(224, 20);
+            this.teDatabaseServer.TabIndex = 1;
             // 
-            // labelDatabaseUsername
+            // labelDatabaseServer
             // 
-            this.labelDatabaseUsername.Location = new System.Drawing.Point(12, 78);
-            this.labelDatabaseUsername.Name = "labelDatabaseUsername";
-            this.labelDatabaseUsername.Size = new System.Drawing.Size(90, 13);
-            this.labelDatabaseUsername.TabIndex = 6;
-            this.labelDatabaseUsername.Text = "Uživatelské jméno:";
+            this.labelDatabaseServer.Location = new System.Drawing.Point(12, 31);
+            this.labelDatabaseServer.Name = "labelDatabaseServer";
+            this.labelDatabaseServer.Size = new System.Drawing.Size(36, 13);
+            this.labelDatabaseServer.TabIndex = 0;
+            this.labelDatabaseServer.Text = "Server:";
             // 
-            // teDatabaseUsername
+            // groupMailSettings
             // 
-            this.teDatabaseUsername.Location = new System.Drawing.Point(12, 97);
-            this.teDatabaseUsername.Name = "teDatabaseUsername";
-            this.teDatabaseUsername.Size = new System.Drawing.Size(224, 20);
-            this.teDatabaseUsername.TabIndex = 7;
+            this.groupMailSettings.Controls.Add(this.teSMTPSenderEmail);
+            this.groupMailSettings.Controls.Add(this.labelSMTPSender);
+            this.groupMailSettings.Controls.Add(this.teSMTPPassword);
+            this.groupMailSettings.Controls.Add(this.labelSMTPPassword);
+            this.groupMailSettings.Controls.Add(this.teSMTPUsername);
+            this.groupMailSettings.Controls.Add(this.labelSMTPUsername);
+            this.groupMailSettings.Controls.Add(this.ceEnableSSL);
+            this.groupMailSettings.Controls.Add(this.seSMTPPort);
+            this.groupMailSettings.Controls.Add(this.labelSMTPPort);
+            this.groupMailSettings.Controls.Add(this.teSMTPServer);
+            this.groupMailSettings.Controls.Add(this.labelSMTPServer);
+            this.groupMailSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupMailSettings.Location = new System.Drawing.Point(0, 208);
+            this.groupMailSettings.Name = "groupMailSettings";
+            this.groupMailSettings.Size = new System.Drawing.Size(492, 178);
+            this.groupMailSettings.TabIndex = 1;
+            this.groupMailSettings.Text = "Zasílání emailů";
             // 
-            // labelDatabasePassword
+            // teSMTPSenderEmail
             // 
-            this.labelDatabasePassword.Location = new System.Drawing.Point(242, 78);
-            this.labelDatabasePassword.Name = "labelDatabasePassword";
-            this.labelDatabasePassword.Size = new System.Drawing.Size(30, 13);
-            this.labelDatabasePassword.TabIndex = 8;
-            this.labelDatabasePassword.Text = "Heslo:";
+            this.teSMTPSenderEmail.Location = new System.Drawing.Point(12, 146);
+            this.teSMTPSenderEmail.Name = "teSMTPSenderEmail";
+            this.teSMTPSenderEmail.Size = new System.Drawing.Size(470, 20);
+            this.teSMTPSenderEmail.TabIndex = 14;
             // 
-            // teDatabasePort
+            // labelSMTPSender
             // 
-            this.teDatabasePort.Location = new System.Drawing.Point(242, 97);
-            this.teDatabasePort.Name = "teDatabasePort";
-            this.teDatabasePort.Properties.UseSystemPasswordChar = true;
-            this.teDatabasePort.Size = new System.Drawing.Size(240, 20);
-            this.teDatabasePort.TabIndex = 9;
+            this.labelSMTPSender.Location = new System.Drawing.Point(12, 127);
+            this.labelSMTPSender.Name = "labelSMTPSender";
+            this.labelSMTPSender.Size = new System.Drawing.Size(199, 13);
+            this.labelSMTPSender.TabIndex = 13;
+            this.labelSMTPSender.Text = "Emailová adresa (použitá jako odesílatel):";
+            // 
+            // teSMTPPassword
+            // 
+            this.teSMTPPassword.Location = new System.Drawing.Point(242, 99);
+            this.teSMTPPassword.Name = "teSMTPPassword";
+            this.teSMTPPassword.Properties.UseSystemPasswordChar = true;
+            this.teSMTPPassword.Size = new System.Drawing.Size(240, 20);
+            this.teSMTPPassword.TabIndex = 12;
+            // 
+            // labelSMTPPassword
+            // 
+            this.labelSMTPPassword.Location = new System.Drawing.Point(242, 80);
+            this.labelSMTPPassword.Name = "labelSMTPPassword";
+            this.labelSMTPPassword.Size = new System.Drawing.Size(30, 13);
+            this.labelSMTPPassword.TabIndex = 11;
+            this.labelSMTPPassword.Text = "Heslo:";
+            // 
+            // teSMTPUsername
+            // 
+            this.teSMTPUsername.Location = new System.Drawing.Point(12, 99);
+            this.teSMTPUsername.Name = "teSMTPUsername";
+            this.teSMTPUsername.Size = new System.Drawing.Size(224, 20);
+            this.teSMTPUsername.TabIndex = 10;
+            // 
+            // labelSMTPUsername
+            // 
+            this.labelSMTPUsername.Location = new System.Drawing.Point(12, 80);
+            this.labelSMTPUsername.Name = "labelSMTPUsername";
+            this.labelSMTPUsername.Size = new System.Drawing.Size(90, 13);
+            this.labelSMTPUsername.TabIndex = 9;
+            this.labelSMTPUsername.Text = "Uzivatelské jméno:";
+            // 
+            // ceEnableSSL
+            // 
+            this.ceEnableSSL.EditValue = true;
+            this.ceEnableSSL.Location = new System.Drawing.Point(326, 51);
+            this.ceEnableSSL.Name = "ceEnableSSL";
+            this.ceEnableSSL.Properties.Caption = "Pro odeslání povolit SSL";
+            this.ceEnableSSL.Size = new System.Drawing.Size(156, 20);
+            this.ceEnableSSL.TabIndex = 8;
             // 
             // seSMTPPort
             // 
@@ -250,70 +291,62 @@
             this.labelSMTPServer.TabIndex = 4;
             this.labelSMTPServer.Text = "SMTP Server:";
             // 
-            // ceEnableSSL
+            // btnCancel
             // 
-            this.ceEnableSSL.EditValue = true;
-            this.ceEnableSSL.Location = new System.Drawing.Point(326, 51);
-            this.ceEnableSSL.Name = "ceEnableSSL";
-            this.ceEnableSSL.Properties.Caption = "Pro odeslání povolit SSL";
-            this.ceEnableSSL.Size = new System.Drawing.Size(156, 20);
-            this.ceEnableSSL.TabIndex = 8;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
+            this.btnCancel.Location = new System.Drawing.Point(12, 392);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Zrušit";
             // 
-            // labelSMTPUsername
+            // btnConfirm
             // 
-            this.labelSMTPUsername.Location = new System.Drawing.Point(12, 80);
-            this.labelSMTPUsername.Name = "labelSMTPUsername";
-            this.labelSMTPUsername.Size = new System.Drawing.Size(90, 13);
-            this.labelSMTPUsername.TabIndex = 9;
-            this.labelSMTPUsername.Text = "Uzivatelské jméno:";
+            this.btnConfirm.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirm.ImageOptions.Image")));
+            this.btnConfirm.Location = new System.Drawing.Point(407, 392);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirm.TabIndex = 3;
+            this.btnConfirm.Text = "Potvrdit";
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // teSMTPUsername
+            // groupBasicSettings
             // 
-            this.teSMTPUsername.Location = new System.Drawing.Point(12, 99);
-            this.teSMTPUsername.Name = "teSMTPUsername";
-            this.teSMTPUsername.Size = new System.Drawing.Size(224, 20);
-            this.teSMTPUsername.TabIndex = 10;
+            this.groupBasicSettings.Controls.Add(this.teProfileName);
+            this.groupBasicSettings.Controls.Add(this.labelControl1);
+            this.groupBasicSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBasicSettings.Location = new System.Drawing.Point(0, 0);
+            this.groupBasicSettings.Name = "groupBasicSettings";
+            this.groupBasicSettings.Size = new System.Drawing.Size(492, 79);
+            this.groupBasicSettings.TabIndex = 4;
+            this.groupBasicSettings.Text = "Základní nastavení";
             // 
-            // labelSMTPPassword
+            // labelControl1
             // 
-            this.labelSMTPPassword.Location = new System.Drawing.Point(242, 80);
-            this.labelSMTPPassword.Name = "labelSMTPPassword";
-            this.labelSMTPPassword.Size = new System.Drawing.Size(30, 13);
-            this.labelSMTPPassword.TabIndex = 11;
-            this.labelSMTPPassword.Text = "Heslo:";
+            this.labelControl1.Location = new System.Drawing.Point(12, 30);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(67, 13);
+            this.labelControl1.TabIndex = 5;
+            this.labelControl1.Text = "Název profilu:";
             // 
-            // teSMTPPassword
+            // teProfileName
             // 
-            this.teSMTPPassword.Location = new System.Drawing.Point(242, 99);
-            this.teSMTPPassword.Name = "teSMTPPassword";
-            this.teSMTPPassword.Properties.UseSystemPasswordChar = true;
-            this.teSMTPPassword.Size = new System.Drawing.Size(240, 20);
-            this.teSMTPPassword.TabIndex = 12;
-            // 
-            // labelSMTPSender
-            // 
-            this.labelSMTPSender.Location = new System.Drawing.Point(12, 127);
-            this.labelSMTPSender.Name = "labelSMTPSender";
-            this.labelSMTPSender.Size = new System.Drawing.Size(199, 13);
-            this.labelSMTPSender.TabIndex = 13;
-            this.labelSMTPSender.Text = "Emailová adresa (použitá jako odesílatel):";
-            // 
-            // teSMTPSenderEmail
-            // 
-            this.teSMTPSenderEmail.Location = new System.Drawing.Point(12, 146);
-            this.teSMTPSenderEmail.Name = "teSMTPSenderEmail";
-            this.teSMTPSenderEmail.Size = new System.Drawing.Size(470, 20);
-            this.teSMTPSenderEmail.TabIndex = 14;
+            this.teProfileName.Location = new System.Drawing.Point(12, 49);
+            this.teProfileName.Name = "teProfileName";
+            this.teProfileName.Size = new System.Drawing.Size(470, 20);
+            this.teProfileName.TabIndex = 11;
             // 
             // fmProfileDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 344);
+            this.ClientSize = new System.Drawing.Size(492, 421);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupMailSettings);
             this.Controls.Add(this.groupDatabase);
+            this.Controls.Add(this.groupBasicSettings);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -323,20 +356,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupDatabase)).EndInit();
             this.groupDatabase.ResumeLayout(false);
             this.groupDatabase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teDatabasePassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseUsername.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seDatabasePort.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseServer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupMailSettings)).EndInit();
             this.groupMailSettings.ResumeLayout(false);
             this.groupMailSettings.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseServer.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.seDatabasePort.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teDatabaseUsername.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teDatabasePort.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teSMTPSenderEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teSMTPPassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teSMTPUsername.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ceEnableSSL.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seSMTPPort.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teSMTPServer.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ceEnableSSL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teSMTPUsername.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teSMTPPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teSMTPSenderEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBasicSettings)).EndInit();
+            this.groupBasicSettings.ResumeLayout(false);
+            this.groupBasicSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teProfileName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -347,7 +384,7 @@
         private DevExpress.XtraEditors.GroupControl groupMailSettings;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnConfirm;
-        private DevExpress.XtraEditors.TextEdit teDatabasePort;
+        private DevExpress.XtraEditors.TextEdit teDatabasePassword;
         private DevExpress.XtraEditors.LabelControl labelDatabasePassword;
         private DevExpress.XtraEditors.TextEdit teDatabaseUsername;
         private DevExpress.XtraEditors.LabelControl labelDatabaseUsername;
@@ -368,5 +405,8 @@
         private DevExpress.XtraEditors.LabelControl labelSMTPServer;
         private DevExpress.XtraEditors.TextEdit teSMTPSenderEmail;
         private DevExpress.XtraEditors.LabelControl labelSMTPSender;
+        private DevExpress.XtraEditors.GroupControl groupBasicSettings;
+        private DevExpress.XtraEditors.TextEdit teProfileName;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

@@ -47,6 +47,19 @@ namespace QProject.Base.DatabaseConnection
         }
 
         /// <summary>
+        /// Gets the first item which match the criteria
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="columnName">Name of the column.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="op">The op.</param>
+        /// <returns></returns>
+        public TEntity? FirstOrDefault<TEntity>(string columnName, object value, string op = "") where TEntity : Entity
+        {
+            return CreateQuery<TEntity>()?.Where(columnName, op, value)?.FirstOrDefault<TEntity>();
+        }
+
+        /// <summary>
         /// Gets all entities.
         /// </summary>
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
