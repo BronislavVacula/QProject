@@ -74,7 +74,7 @@ namespace QProject.Classes
         /// Opens the document 
         /// </summary>
         /// <param name="documentType"></param>
-        public void OpenDocument(Type documentType, params object[] constructorParameters)
+        public void OpenDocument(Type documentType, params object[]? constructorParameters)
         {
             if (_tabbedView == null)
                 return;
@@ -122,7 +122,7 @@ namespace QProject.Classes
         /// <param name="documentType">Type of the document.</param>
         /// <param name="constructorParameters">The constructor parameters.</param>
         /// <returns></returns>
-        public UserControl? GetOpenedDocument(Type documentType, params object[] constructorParameters)
+        public UserControl? GetOpenedDocument(Type documentType, params object[]? constructorParameters)
         {
             if (_tabbedView != null && _tabbedView.Documents != null)
             {
@@ -135,7 +135,7 @@ namespace QProject.Classes
 
                         if (document.Control.Tag is object[] documentParams)
                         {
-                            if (documentParams.Length == constructorParameters.Length && AreConstructorsSame(documentParams, constructorParameters))
+                            if (documentParams.Length == constructorParameters?.Length && AreConstructorsSame(documentParams, constructorParameters))
                             {
                                 return document.Control as UserControl;
                             }

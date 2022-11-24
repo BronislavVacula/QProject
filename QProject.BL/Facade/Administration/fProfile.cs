@@ -42,7 +42,7 @@ namespace QProject.BL.Facade.Administration
         public List<SettingsProfile> Profiles { get; private set; } = new();
         #endregion
 
-        #region Methods        
+        #region Methods               
         /// <summary>
         /// Loads the profiles.
         /// </summary>

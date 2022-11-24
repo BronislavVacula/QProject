@@ -16,4 +16,13 @@ namespace QProject.Base.Enums
         [Description("Kritická")]
         Critical
     }
+
+    /// <summary>
+    /// Action
+    /// </summary>
+    public enum MenuItemOpenAction
+    {
+        Control,
+        Form,
+    }
 }

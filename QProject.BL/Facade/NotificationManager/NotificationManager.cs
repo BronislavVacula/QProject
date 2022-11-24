@@ -20,16 +20,7 @@ namespace QProject.BL
             {
                 if (receiver == NotificationReciver.User)
                 {
-                    User? receiverUser = DBConn.Instance.Find<User>(receiverId);
-
-                    if (receiverUser != null)
-                    {
-                        if (receiverUser.NotificationType.HasFlag(NotificationType.Email)
-                            && !string.IsNullOrEmpty(receiverUser.Email))
-                        {
-                            Mailer.Instance.SendMail(receiverUser.Email, notification.Subject, notification.ToString());
-                        }
-                    }
+                    SendUserNotification(receiverId, notification);
                 }
                 else if (receiver == NotificationReciver.Role)
                 {
@@ -39,6 +30,36 @@ namespace QProject.BL
                     {
                         SendNotification(NotificationReciver.User, memberId, notification);
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sends the user notification.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="notification">The notification.</param>
+        /// <returns></returns>
+        public void SendUserNotification(int? userId, Notification notification)
+        {
+            SendUserNotification(userId, notification.Subject, notification.ToString());
+        }
+
+        /// <summary>
+        /// Sends the user notification.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="subject">The subject.</param>
+        /// <param name="text">The text.</param>
+        public void SendUserNotification(int? userId, string subject, string text)
+        {
+            User? receiverUser = DBConn.Instance.Find<User>(userId);
+
+            if (receiverUser != null)
+            {
+                if (receiverUser.NotificationType.HasFlag(NotificationType.Email) && !string.IsNullOrEmpty(receiverUser.Email))
+                {
+                    Mailer.Instance.SendMail(receiverUser.Email, subject, text);
                 }
             }
         }
