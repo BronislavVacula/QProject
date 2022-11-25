@@ -2,8 +2,6 @@
 using QProject.BL.Entities.Settings;
 using QProject.Classes.Validation;
 using QProject.Classes.Validation.Rules;
-using System;
-using System.Windows.Forms;
 
 namespace QProject.UI
 {
@@ -50,7 +48,7 @@ namespace QProject.UI
             Validator.ClearValidatorErrors();
 
             bool result = true;
-            
+
             //Database settings
             result &= Validator.ValidateControl(teDatabaseServer, new NotEmptyRule());
             result &= Validator.ValidateControl(teDatabaseName, new NotEmptyRule());
@@ -71,9 +69,7 @@ namespace QProject.UI
         /// </summary>
         private void SaveContent()
         {
-            if (SettingsProfile == null)
-                SettingsProfile = new SettingsProfile();
-
+            SettingsProfile ??= new SettingsProfile();
             SettingsProfile.Name = teProfileName.Text;
         }
         #endregion
@@ -86,7 +82,7 @@ namespace QProject.UI
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if(ValidateContent())
+            if (ValidateContent())
             {
                 SaveContent();
 

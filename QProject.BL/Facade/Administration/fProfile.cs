@@ -1,6 +1,5 @@
 ﻿using QProject.Base.Constants;
 using QProject.BL.Entities.Settings;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 
 namespace QProject.BL.Facade.Administration
@@ -34,7 +33,7 @@ namespace QProject.BL.Facade.Administration
         /// <value>
         /// The current profile.
         /// </value>
-        public SettingsProfile CurrentProfile { get; private set; }
+        public SettingsProfile? CurrentProfile { get; private set; }
 
         /// <summary>
         /// The profiles
@@ -88,7 +87,7 @@ namespace QProject.BL.Facade.Administration
 
                 serializer.Serialize(fs, Profiles);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 return ex.Message;
             }
@@ -104,11 +103,11 @@ namespace QProject.BL.Facade.Administration
         {
             SettingsProfile? foundProfile = Profiles.FirstOrDefault(p => p?.Name == profile.Name);
 
-            if(foundProfile == null)
+            if (foundProfile == null)
             {
                 Profiles.Add(profile);
             }
-            else if(foundProfile.GetHashCode() != profile.GetHashCode())
+            else if (foundProfile.GetHashCode() != profile.GetHashCode())
             {
                 foundProfile.Update(profile);
             }
