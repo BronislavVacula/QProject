@@ -39,6 +39,7 @@ namespace QProject.UI
             if (string.IsNullOrEmpty(errorMessage))
             {
                 leProfiles.Properties.DataSource = fProfile.Instance.Profiles;
+                leProfiles.EditValue = fProfile.Instance.Profiles.FirstOrDefault();
             }
         }
 
@@ -99,6 +100,8 @@ namespace QProject.UI
             if (leProfiles.EditValue is SettingsProfile settingsProfile)
             {
                 fProfile.Instance.ChangeProfile(settingsProfile);
+
+                DialogResult = DialogResult.OK;
             }
             else XtraMessageBox.Show("Není vybrán žádný profil, nelze pokračovat.", "Upozornění", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }

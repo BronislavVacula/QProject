@@ -1,25 +1,17 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
-using DevExpress.XtraEditors;
 using QProject.Base.DatabaseConnection;
+using QProject.Base.Enums.Projects;
+using QProject.BL.Facade.Administration;
 using QProject.Classes;
 using QProject.Classes.DocumentManager;
 using QProject.UI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Windows.Forms;
 
 namespace QProject
 {
     public partial class fmMain : RibbonForm
     {
         #region Properties and fields        
-        /// <summary>
-        /// The menu items
-        /// </summary>
-        private readonly List<MenuItem> menuItems = new();
         #endregion
 
         #region Constructor and initialization
@@ -58,7 +50,10 @@ namespace QProject
         /// </summary>
         private void InitDatabaseConnection()
         {
-            DBConn.Instance.Init("");
+            if (fProfile.Instance.CurrentProfile != null)
+            {
+                DBConn.Instance.Init(fProfile.Instance.CurrentProfile?.DatabaseServerSettings.ToString() ?? "");
+            }
         }
 
         /// <summary>
@@ -76,6 +71,71 @@ namespace QProject
         /// <returns></returns>
         private void InitMenuItems()
         {
+            InitAdministrationMenuItems();
+            InitProjectsMenuItems();
+            InitAgendaMenuItems();
+            InitStockMenuItems();
+            InitFinancialMenuItems();
+            InitSettingsMenuItems();
+            InitHelpMenuItems();
+        }
+
+        /// <summary>
+        /// Initializes the administration menu items.
+        /// </summary>
+        private void InitAdministrationMenuItems()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes the projects menu items.
+        /// </summary>
+        private void InitProjectsMenuItems()
+        {
+            biNewProject.Tag = biCreateNewProject.Tag = new MenuItemForm<UI.Projects.Forms.fmNewProject>();
+            biOpenWorkingProjects.Tag = new MenuItemUC<UI.Projects.ucProjectList>(new ProjectState[] { ProjectState.New, ProjectState.InProgress, ProjectState.Finished, ProjectState.AfterDeadline });
+            biOpenFinishedProjects.Tag = new MenuItemUC<UI.Projects.ucProjectList>(new ProjectState[] { ProjectState.Finished });
+            biOpenCanceledProjects.Tag = new MenuItemUC<UI.Projects.ucProjectList>(new ProjectState[] { ProjectState.Canceled });
+        }
+
+        /// <summary>
+        /// Initializes the agenda menu items.
+        /// </summary>
+        private void InitAgendaMenuItems()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes the stock menu items.
+        /// </summary>
+        private void InitStockMenuItems()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes the financial menu items.
+        /// </summary>
+        private void InitFinancialMenuItems()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes the settings menu items.
+        /// </summary>
+        private void InitSettingsMenuItems()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes the help menu items.
+        /// </summary>
+        private void InitHelpMenuItems()
+        {
 
         }
         #endregion
@@ -89,12 +149,22 @@ namespace QProject
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        public void RibbonItem_Click(object sender, EventArgs e)
+        public void RibbonItem_Click(object sender, ItemClickEventArgs e)
         {
-            if(sender is BarButtonItem barButtonItem && barButtonItem.Tag is MenuItem menuItem)
+            if (e.Item is BarButtonItem barButtonItem && barButtonItem.Tag is MenuItem menuItem)
             {
                 menuItem.Open();
             }
+        }
+
+        /// <summary>
+        /// The form is closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void fmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            fProfile.Instance.SaveProfiles();
         }
         #endregion
     }

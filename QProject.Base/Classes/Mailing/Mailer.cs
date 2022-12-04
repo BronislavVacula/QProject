@@ -33,7 +33,7 @@ namespace QProject.Base.Classes.Mailing
         /// <value>
         /// The SMTP settings.
         /// </value>
-        public ISmtpSettings SmtpSettings { get; private set; }
+        public ISmtpSettings? SmtpSettings { get; private set; }
         #endregion
 
         #region Constructor and initialization        

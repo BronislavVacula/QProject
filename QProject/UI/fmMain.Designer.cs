@@ -31,11 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.biNewProject = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.biCreateNewProject = new DevExpress.XtraBars.BarButtonItem();
+            this.biOpenWorkingProjects = new DevExpress.XtraBars.BarButtonItem();
+            this.biOpenFinishedProjects = new DevExpress.XtraBars.BarButtonItem();
+            this.biOpenCanceledProjects = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -76,13 +80,17 @@
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
             this.ribbonControl1.SearchEditItem,
-            this.barButtonItem1,
+            this.biNewProject,
             this.barButtonItem2,
             this.barButtonItem3,
             this.barButtonItem4,
-            this.barButtonItem5});
+            this.barButtonItem5,
+            this.biCreateNewProject,
+            this.biOpenWorkingProjects,
+            this.biOpenFinishedProjects,
+            this.biOpenCanceledProjects});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 7;
+            this.ribbonControl1.MaxItemId = 11;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -96,14 +104,15 @@
             this.ribbonControl1.Size = new System.Drawing.Size(985, 158);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
-            // barButtonItem1
+            // biNewProject
             // 
-            this.barButtonItem1.Caption = "Nový projekt";
-            this.barButtonItem1.Id = 1;
-            this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText)));
+            this.biNewProject.Caption = "Nový projekt";
+            this.biNewProject.Id = 1;
+            this.biNewProject.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("biNewProject.ImageOptions.Image")));
+            this.biNewProject.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("biNewProject.ImageOptions.LargeImage")));
+            this.biNewProject.Name = "biNewProject";
+            this.biNewProject.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText)));
+            this.biNewProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.RibbonItem_Click);
             // 
             // barButtonItem2
             // 
@@ -141,6 +150,46 @@
             this.barButtonItem5.Name = "barButtonItem5";
             this.barButtonItem5.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
+            // biCreateNewProject
+            // 
+            this.biCreateNewProject.Caption = "Nový projekt";
+            this.biCreateNewProject.Id = 7;
+            this.biCreateNewProject.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("biCreateNewProject.ImageOptions.Image")));
+            this.biCreateNewProject.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("biCreateNewProject.ImageOptions.LargeImage")));
+            this.biCreateNewProject.Name = "biCreateNewProject";
+            this.biCreateNewProject.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.biCreateNewProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.RibbonItem_Click);
+            // 
+            // biOpenWorkingProjects
+            // 
+            this.biOpenWorkingProjects.Caption = "Probíhající projekty";
+            this.biOpenWorkingProjects.Id = 8;
+            this.biOpenWorkingProjects.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("biOpenWorkingProjects.ImageOptions.Image")));
+            this.biOpenWorkingProjects.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("biOpenWorkingProjects.ImageOptions.LargeImage")));
+            this.biOpenWorkingProjects.Name = "biOpenWorkingProjects";
+            this.biOpenWorkingProjects.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
+            this.biOpenWorkingProjects.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.RibbonItem_Click);
+            // 
+            // biOpenFinishedProjects
+            // 
+            this.biOpenFinishedProjects.Caption = "Dokončené projekty";
+            this.biOpenFinishedProjects.Id = 9;
+            this.biOpenFinishedProjects.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("biOpenFinishedProjects.ImageOptions.Image")));
+            this.biOpenFinishedProjects.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("biOpenFinishedProjects.ImageOptions.LargeImage")));
+            this.biOpenFinishedProjects.Name = "biOpenFinishedProjects";
+            this.biOpenFinishedProjects.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
+            this.biOpenFinishedProjects.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.RibbonItem_Click);
+            // 
+            // biOpenCanceledProjects
+            // 
+            this.biOpenCanceledProjects.Caption = "Zrušené projekty";
+            this.biOpenCanceledProjects.Id = 10;
+            this.biOpenCanceledProjects.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("biOpenCanceledProjects.ImageOptions.Image")));
+            this.biOpenCanceledProjects.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("biOpenCanceledProjects.ImageOptions.LargeImage")));
+            this.biOpenCanceledProjects.Name = "biOpenCanceledProjects";
+            this.biOpenCanceledProjects.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
+            this.biOpenCanceledProjects.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.RibbonItem_Click);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -152,7 +201,7 @@
             // 
             // ribbonPageGroup8
             // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup8.ItemLinks.Add(this.biNewProject);
             this.ribbonPageGroup8.ItemLinks.Add(this.barButtonItem5);
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             this.ribbonPageGroup8.Text = "Projekty";
@@ -191,8 +240,12 @@
             // 
             // ribbonPageGroup1
             // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.biCreateNewProject);
+            this.ribbonPageGroup1.ItemLinks.Add(this.biOpenWorkingProjects);
+            this.ribbonPageGroup1.ItemLinks.Add(this.biOpenFinishedProjects);
+            this.ribbonPageGroup1.ItemLinks.Add(this.biOpenCanceledProjects);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "Hlavní akce";
             // 
             // ribbonPage4
             // 
@@ -329,6 +382,7 @@
             this.StatusBar = this.ribbonStatusBar1;
             this.Text = "Správa projektů";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fmMain_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dockPanel1.ResumeLayout(false);
@@ -366,7 +420,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage8;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
         private DevExpress.XtraBars.Navigation.AccordionControl navigator;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem biNewProject;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
@@ -374,5 +428,9 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
+        private DevExpress.XtraBars.BarButtonItem biCreateNewProject;
+        private DevExpress.XtraBars.BarButtonItem biOpenWorkingProjects;
+        private DevExpress.XtraBars.BarButtonItem biOpenFinishedProjects;
+        private DevExpress.XtraBars.BarButtonItem biOpenCanceledProjects;
     }
 }
