@@ -130,6 +130,7 @@
             this.gcNumber.AppearanceHeader.Options.UseTextOptions = true;
             this.gcNumber.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gcNumber.Caption = "Číslo projektu";
+            this.gcNumber.FieldName = "Number";
             this.gcNumber.MaxWidth = 100;
             this.gcNumber.MinWidth = 100;
             this.gcNumber.Name = "gcNumber";
@@ -140,6 +141,7 @@
             // gcName
             // 
             this.gcName.Caption = "Název projektu";
+            this.gcName.FieldName = "Name";
             this.gcName.MinWidth = 120;
             this.gcName.Name = "gcName";
             this.gcName.Visible = true;
@@ -149,6 +151,7 @@
             // gcCategory
             // 
             this.gcCategory.Caption = "Kategorie";
+            this.gcCategory.FieldName = "CategoryName";
             this.gcCategory.MinWidth = 100;
             this.gcCategory.Name = "gcCategory";
             this.gcCategory.Visible = true;
@@ -158,6 +161,7 @@
             // gcPriority
             // 
             this.gcPriority.Caption = "Priorita";
+            this.gcPriority.FieldName = "PriorityName";
             this.gcPriority.MaxWidth = 80;
             this.gcPriority.MinWidth = 80;
             this.gcPriority.Name = "gcPriority";
@@ -168,6 +172,7 @@
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Odpovědný team";
+            this.gridColumn1.FieldName = "ResponsibleTeamName";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 3;
@@ -176,6 +181,7 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Datum přijetí";
+            this.gridColumn2.FieldName = "ReceivedAt";
             this.gridColumn2.MaxWidth = 80;
             this.gridColumn2.MinWidth = 80;
             this.gridColumn2.Name = "gridColumn2";
@@ -186,6 +192,7 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Plánované zahájení";
+            this.gridColumn3.FieldName = "PlanStartAt";
             this.gridColumn3.MaxWidth = 80;
             this.gridColumn3.MinWidth = 80;
             this.gridColumn3.Name = "gridColumn3";
@@ -196,6 +203,7 @@
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Datum zahájení";
+            this.gridColumn4.FieldName = "RealStartAt";
             this.gridColumn4.MaxWidth = 80;
             this.gridColumn4.MinWidth = 80;
             this.gridColumn4.Name = "gridColumn4";
@@ -206,6 +214,7 @@
             // gcDeadLine
             // 
             this.gcDeadLine.Caption = "Termín";
+            this.gcDeadLine.FieldName = "Deadline";
             this.gcDeadLine.MaxWidth = 80;
             this.gcDeadLine.MinWidth = 80;
             this.gcDeadLine.Name = "gcDeadLine";
@@ -216,6 +225,7 @@
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Stav";
+            this.gridColumn5.FieldName = "StateName";
             this.gridColumn5.MaxWidth = 80;
             this.gridColumn5.MinWidth = 80;
             this.gridColumn5.Name = "gridColumn5";

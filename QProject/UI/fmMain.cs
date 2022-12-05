@@ -62,7 +62,6 @@ namespace QProject
         private void InitDocumentManager()
         {
             DocumentManagerEx.Instance.Init(navigator, tabbedView1);
-            DocumentManagerEx.Instance.OpenDocument(typeof(UI.Projects.ucProjectList));
         }
 
         /// <summary>

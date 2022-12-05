@@ -1,6 +1,8 @@
 ﻿using QProject.Base;
 using QProject.Base.Attributes;
 using QProject.Base.Constants;
+using QProject.Base.DatabaseConnection;
+using QProject.Base.Enums.Projects;
 using QProject.BL.Entities.Projects;
 using QProject.Templates.Controls;
 using QProject.UI.Projects.Forms;
@@ -14,7 +16,7 @@ namespace QProject.UI.Projects
         /// <summary>
         /// The projects
         /// </summary>
-        private List<Project> projects = new();
+        private List<Project>? projects = new();
         #endregion
 
         #region Constructor and initialization
@@ -22,6 +24,15 @@ namespace QProject.UI.Projects
         /// Initializes a new instance of the <see cref="ucProjectList"/> class.
         /// </summary>
         public ucProjectList()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ucProjectList"/> class.
+        /// </summary>
+        /// <param name="stateFilter">The state filter.</param>
+        public ucProjectList(ProjectState[] stateFilter)
         {
             InitializeComponent();
             Init();
@@ -42,7 +53,7 @@ namespace QProject.UI.Projects
         /// </summary>
         private void LoadContent()
         {
-
+            gridProjects.DataSource = projects = DBConn.Instance.GetAll<Project>()?.ToList();
         }
         #endregion
 
@@ -58,6 +69,7 @@ namespace QProject.UI.Projects
 
             if (newProjectDialog.ShowDialog() == DialogResult.OK)
             {
+                projects ??= new List<Project>();
                 projects.Add(newProjectDialog.Result);
 
                 gvProjects.RefreshData();
@@ -101,7 +113,7 @@ namespace QProject.UI.Projects
             {
                 EntityManager.DeleteEntity(project);
 
-                if (projects.Contains(project))
+                if (projects != null && projects.Contains(project))
                     projects.Remove(project);
 
                 gvProjects.RefreshData();

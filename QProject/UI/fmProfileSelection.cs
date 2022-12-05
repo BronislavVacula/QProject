@@ -128,13 +128,18 @@ namespace QProject.UI
         {
             if (gridLookUpEdit1View.GetFocusedRow() is SettingsProfile settingsProfile)
             {
-                if (e.Button.Caption == gcEdit.Caption)
+                if (e.Button.Index == 0)
                 {
                     ShowProfileChangeDialog(settingsProfile);
                 }
-                else if (e.Button.Caption == gcRemove.Caption)
+                else if (e.Button.Index == 1)
                 {
                     fProfile.Instance.RemoveProfile(settingsProfile);
+                }
+
+                if(e.Button.Index == 0 || e.Button.Index == 2)
+                {
+                    leProfiles.ClosePopup();
                 }
             }
         }
