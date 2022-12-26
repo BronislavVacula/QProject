@@ -1,11 +1,13 @@
-﻿using Shared.Attributes;
+﻿using QProject.Base.DatabaseConnection;
+using QProject.Shared.Attributes;
+using QProject.Shared.Extensions;
+using QProject.Shared.Interfaces;
 using SqlKata;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace QProject.Base
 {
-    public class Entity : INotifyPropertyChanged
+    public class Entity : INotifyPropertyChanged, IEntity
     {
         #region Properties and fields
         /// <summary>
@@ -21,21 +23,15 @@ namespace QProject.Base
         public bool IsSaved => Id.HasValue;
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is modified.
-        /// </summary>
-        [DatabaseColumn(ReadOnly = true)]
-        public bool IsModified { get; set; } = false;
-
-        /// <summary>
         /// Gets or sets a value indicating whether this instance is deleted.
         /// </summary>
         [DatabaseColumn(ReadOnly = true)]
         public bool IsDeleted { get; set; } = false;
 
         /// <summary>
-        /// The properties
+        /// The related entities
         /// </summary>
-        internal List<EntityProperty> properties = new();
+        public List<Entity> relatedEntities = new();
         #endregion
 
         #region Events         
@@ -47,99 +43,85 @@ namespace QProject.Base
 
         #region Methods
         /// <summary>
-        /// Creates the property.
+        /// Copies this instance.
         /// </summary>
-        /// <typeparam name="PropertyType">The type of the roperty type.</typeparam>
-        /// <param name="propertyName">Name of the method.</param>
-        /// <param name="defaultValue">The default value.</param>
-        public void CreateProperty<PropertyType>([CallerMemberName()] string propertyName = "", object? defaultValue = null)
+        /// <typeparam name="TResult">The type of the result.</typeparam>
+        public TResult Copy<TResult>() where TResult : Entity
         {
-            properties.Add(new EntityProperty(propertyName, defaultValue));
-        }
-
-        /// <summary>
-        /// Clears the properties.
-        /// </summary>
-        public void ClearProperties() => properties.Clear();
-
-        /// <summary>
-        /// Gets the property value.
-        /// </summary>
-        /// <typeparam name="PropertyType">The type of the roperty type.</typeparam>
-        /// <param name="propertyName">Name of the method.</param>
-        /// <returns></returns>
-        public PropertyType? GetPropertyValue<PropertyType>([CallerMemberName()] string propertyName = "")
-        {
-            EntityProperty? property = properties.FirstOrDefault(p => p.Name == propertyName);
-
-            if (property != null)
-            {
-                return (PropertyType?)property.Value;
-            }
-            
-            throw new Exception($"Propery {propertyName} doesnt exists!");
-        }
-
-        /// <summary>
-        /// Sets the property value.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <param name="propertyName">Name of the property.</param>
-        public void SetPropertyValue(object? value, [CallerMemberName()] string propertyName = "")
-        {
-            EntityProperty? property = properties.FirstOrDefault(p => p.Name == propertyName);
-
-            if (property != null)
-            {
-                if (property.IsInitialized && property.Value != property.SavedValue)
-                {
-                    IsModified = true;
-
-                    property.IsModified = true;
-                }
-                else
-                {
-                    property.SavedValue = value;
-                    property.IsInitialized = true;
-                }
-
-                property.Value = value;
-
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-            else throw new Exception($"Propery {propertyName} doesnt exists!");
-        }
-
-        /// <summary>
-        /// Determines whether [is property modified] [the specified property name].
-        /// </summary>
-        /// <param name="propertyName">Name of the property.</param>
-        public bool IsPropertyModified(string propertyName)
-        {
-            EntityProperty? property = properties.FirstOrDefault(p => p.Name == propertyName);
-
-            return property?.IsModified ?? false;
-        }
-
-        /// <summary>
-        /// Saves the properties.
-        /// </summary>
-        internal void SaveProperties()
-        {
-            foreach (EntityProperty property in properties)
-            {
-                property.SavedValue = property.Value;
-                property.IsModified = false;
-                property.IsInitialized = true;
-            }
+            return (TResult)MemberwiseClone();
         }
 
         /// <summary>
         /// Saves this instance.
         /// </summary>
-        public void Save()
+        /// <param name="columnValues">The column values.</param>
+        public void Save(IEnumerable<KeyValuePair<string, object>>? columnValues = null)
         {
             EntityManager.SaveEntity(this);
+        }
+        #endregion
+
+        #region Related entities   
+        /// <summary>
+        /// Gets the related entity.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="entityId">The entity identifier.</param>
+        /// <returns></returns>
+        public TEntity? GetRelatedEntity<TEntity>(int? entityId) where TEntity : Entity
+        {
+            Entity? relatedEntity = relatedEntities.FirstOrDefault(e => e.Id == entityId && e.GetType() == typeof(TEntity));
+
+            if (relatedEntity == null)
+            {
+                //Find item into database
+                relatedEntity = DBConn.Instance.Find<TEntity>(entityId);
+
+                //If item exists in the database, add him to cache
+                if (relatedEntity != null)
+                    relatedEntities.Add(relatedEntity);
+            }
+
+            return (TEntity?)relatedEntity;
+        }
+
+        /// <summary>
+        /// Sets the related entity.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="value">The value.</param>
+        /// <param name="idBefore">The identifier before.</param>
+        /// <param name="sourceTargetProperies">The source target properies.</param>
+        public void SetRelatedEntity<TEntity>(TEntity? value, int? idBefore, Dictionary<string, string> sourceTargetProperies) where TEntity : Entity
+        {
+            if (value == null)
+            {
+                //Remove item from the cache
+                relatedEntities.RemoveAll(e => e.Id == idBefore && e.GetType() == typeof(TEntity));
+
+                SetRelatedEntityPropertyValue(sourceTargetProperies, prop => null);
+            }
+            else if (!relatedEntities.Contains(value))
+            {
+                //Add item to cache
+                if (!relatedEntities.Contains(value))
+                    relatedEntities.Add(value);
+
+                SetRelatedEntityPropertyValue(sourceTargetProperies, prop => value.GetPropertyValue(prop));
+            }
+        }
+
+        /// <summary>
+        /// Sets the property value.
+        /// </summary>
+        /// <param name="sourceTargetProperies">The source target properies.</param>
+        /// <param name="valueSelector">The value selector.</param>
+        private void SetRelatedEntityPropertyValue(Dictionary<string, string> sourceTargetProperies, Func<string, object?> valueSelector)
+        {
+            foreach (KeyValuePair<string, string> sourceTargetProperty in sourceTargetProperies)
+            {
+                this.SetPropertyValue(sourceTargetProperty.Value, valueSelector(sourceTargetProperty.Key));
+            }
         }
         #endregion
     }

@@ -30,4 +30,14 @@
         Popup = 2,
         Email = 4,
     }
+
+    /// <summary>
+    /// Entity action (for UC notifications)
+    /// </summary>
+    public enum EntityAction
+    {
+        Create,
+        Update,
+        Delete
+    }
 }

@@ -1,18 +1,14 @@
 ﻿using DevExpress.XtraEditors;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using QProject.Base.Attributes;
+using QProject.Base.Constants;
 
 namespace QProject.UI
 {
-    public partial class fmAuthentication : DevExpress.XtraEditors.XtraForm
+    public partial class fmAuthentication : XtraForm
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="fmAuthentication"/> class.
+        /// </summary>
         public fmAuthentication()
         {
             InitializeComponent();

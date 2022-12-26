@@ -2,10 +2,29 @@
 {
     public class SettingsProfile
     {
-        #region Properties and fields
+        #region Properties and fields        
+        /// <summary>
+        /// Gets or sets the name of the profile.
+        /// </summary>
+        /// <value>
+        /// The name of the profile.
+        /// </value>
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets the database server settings.
+        /// </summary>
+        /// <value>
+        /// The database server settings.
+        /// </value>
         public DatabaseServerSettings DatabaseServerSettings { get; set; } = new();
+
+        /// <summary>
+        /// Gets or sets the mail server settings.
+        /// </summary>
+        /// <value>
+        /// The mail server settings.
+        /// </value>
         public MailServerSettings MailServerSettings { get; set; } = new();
         #endregion
 

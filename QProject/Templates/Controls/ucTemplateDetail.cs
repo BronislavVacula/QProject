@@ -3,9 +3,6 @@ using QProject.Base;
 using QProject.Base.Enums;
 using QProject.BL.Entities.Projects;
 using QProject.Templates.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace QProject.Templates.Controls
 {
@@ -26,7 +23,7 @@ namespace QProject.Templates.Controls
         /// <value>
         ///   <c>true</c> if this instance has changes; otherwise, <c>false</c>.
         /// </value>
-        protected bool HasChanges { get; private set; }
+        public bool HasChanges { get; set; }
 
         /// <summary>
         /// Gets the related entity.
@@ -149,7 +146,7 @@ namespace QProject.Templates.Controls
         /// </returns>
         public virtual bool CanFinish()
         {
-            if (HasChanges)
+            if (HasChanges && (EditationMode == EditationMode.New || EditationMode == EditationMode.Editation))
             {
                 return XtraMessageBox.Show("Provedené změny nebudou uloženy, pokračovat?", "Uložení změn", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
             }
@@ -162,7 +159,9 @@ namespace QProject.Templates.Controls
         /// </summary>
         public virtual void RollbackChanges()
         {
-
+            ClearBinding(Controls);
+            InitBinding();
+            LoadContent();
         }
 
         /// <summary>
@@ -172,6 +171,15 @@ namespace QProject.Templates.Controls
         ///   <c>true</c> if this instance [can save content]; otherwise, <c>false</c>.
         /// </returns>
         public virtual bool CanSaveContent()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Closes the content.
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool CloseContent()
         {
             return true;
         }
@@ -210,14 +218,33 @@ namespace QProject.Templates.Controls
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public virtual void btnFinish_Click(object sender, EventArgs e)
         {
-            if(CanFinish())
+            if (CanFinish())
             {
-                if(HasChanges)
+                if (HasChanges)
                     RollbackChanges();
 
                 EditationMode = EditationMode.Editable;
 
                 UpdateState();
+                LoadContent();
+            }
+        }
+        #endregion
+
+        #region Binding system        
+        /// <summary>
+        /// Clears the binding.
+        /// </summary>
+        /// <param name="controls">The controls.</param>
+        public void ClearBinding(ControlCollection controls)
+        {
+            foreach (Control control in controls)
+            {
+                if (control.DataBindings.Count > 0)
+                    control.DataBindings.Clear();
+
+                if (control.Controls.Count > 0)
+                    ClearBinding(control.Controls);
             }
         }
         #endregion

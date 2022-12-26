@@ -1,21 +1,23 @@
-﻿using DevExpress.XtraEditors;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using QProject.Templates.Forms;
 
 namespace QProject.UI.Projects.Forms
 {
-    public partial class fmProjectTask : DevExpress.XtraEditors.XtraForm
+    public partial class fmProjectTask : fmTemplateDetail
     {
+        #region Properties and fields
+        #endregion
+
+        #region Constructor and initialization
+        /// <summary>
+        /// Initializes a new instance of the <see cref="fmProjectTask"/> class.
+        /// </summary>
         public fmProjectTask()
         {
             InitializeComponent();
         }
+        #endregion
+
+        #region Methods
+        #endregion
     }
 }

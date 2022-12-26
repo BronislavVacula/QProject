@@ -5,11 +5,14 @@ namespace QProject.Classes.Validation
 {
     public class Validator
     {
+        #region Properties and fields
         /// <summary>
         /// The error provider
         /// </summary>
         private readonly static DXErrorProvider errorProvider = new();
+        #endregion
 
+        #region Methods
         /// <summary>
         /// Validates the control.
         /// </summary>
@@ -34,5 +37,6 @@ namespace QProject.Classes.Validation
         {
             errorProvider.ClearErrors();
         }
+        #endregion
     }
 }

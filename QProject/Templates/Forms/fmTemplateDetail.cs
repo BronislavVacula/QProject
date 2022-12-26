@@ -22,7 +22,7 @@ namespace QProject.Templates.Forms
         /// <value>
         ///   <c>true</c> if this instance has changes; otherwise, <c>false</c>.
         /// </value>
-        public bool HasChanges { get; private set; }
+        public bool HasChanges { get; set; }
 
         /// <summary>
         /// Gets the related entity.

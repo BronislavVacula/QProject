@@ -1,12 +1,14 @@
 ﻿using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraBars.Docking2010.Views.Tabbed;
 using DevExpress.XtraBars.Navigation;
-using DevExpress.XtraEditors;
 using QProject.Base;
 using QProject.Base.Attributes;
+using QProject.Base.Constants;
+using QProject.Base.Enums;
+using QProject.Interfaces;
+using QProject.Shared.Extensions;
 using QProject.Templates.Controls;
 using QProject.Templates.Interfaces;
-using Shared.Extensions;
 
 namespace QProject.Classes
 {
@@ -62,6 +64,19 @@ namespace QProject.Classes
         {
             _accordionControl = accordionControl;
             _tabbedView = tabbedView;
+
+            InitEvents();
+        }
+
+        /// <summary>
+        /// Initializes the events.
+        /// </summary>
+        private void InitEvents()
+        {
+            if (_accordionControl != null)
+            {
+                _accordionControl.ElementClick += _accordionControl_ElementClick;
+            }
         }
 
         /// <summary>Opens the document.</summary>
@@ -94,14 +109,7 @@ namespace QProject.Classes
 
                     if (groupElement != null)
                     {
-                        string documentCaption = openedDocument.ToString();
-
-                        if(openedDocument is not ucTemplateDetail 
-                            && documentAttribute != null
-                            && !string.IsNullOrEmpty(documentAttribute.DocumentName))
-                        {
-                            documentCaption = documentAttribute.DocumentName;
-                        }
+                        string documentCaption = GetDocumentCaption(openedDocument, documentAttribute);
 
                         CreateGroupItemAccordionElement(groupElement, openedDocument, documentCaption);
 
@@ -148,32 +156,6 @@ namespace QProject.Classes
         }
 
         /// <summary>
-        /// Are the constructors same.
-        /// </summary>
-        /// <param name="first">The first.</param>
-        /// <param name="second">The second.</param>
-        /// <returns></returns>
-        private bool AreConstructorsSame(object[] first, object[] second)
-        {
-            for (int i = 0; i < first.Length; i++)
-            {
-                if (first[i] is Entity documentEntity && second[i] is Entity newEntity)
-                {
-                    if (documentEntity.GetType() != newEntity.GetType() || documentEntity.Id != newEntity.Id)
-                    {
-                        return false;
-                    }
-                }
-                else if (first[i] != second[i])
-                {
-                    return false;
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
         /// Determines whether this instance [can close document] the specified document.
         /// </summary>
         /// <param name="document">The document.</param>
@@ -203,6 +185,25 @@ namespace QProject.Classes
                     _tabbedView.RemoveDocument(document);
 
                 document.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Sends the notification.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <param name="entity">The entity.</param>
+        public void SendNotification(EntityAction action, object? entity)
+        {
+            if (_tabbedView != null)
+            {
+                foreach (BaseDocument document in _tabbedView.Documents)
+                {
+                    if (document.Control is INotificable notificable)
+                    {
+                        notificable.OnReceivedNotification(action, entity);
+                    }
+                }
             }
         }
 
@@ -286,6 +287,50 @@ namespace QProject.Classes
 
             return null;
         }
+
+        /// <summary>
+        /// Are the constructors same.
+        /// </summary>
+        /// <param name="first">The first.</param>
+        /// <param name="second">The second.</param>
+        /// <returns></returns>
+        private bool AreConstructorsSame(object[] first, object[] second)
+        {
+            for (int i = 0; i < first.Length; i++)
+            {
+                if (first[i] is Entity documentEntity && second[i] is Entity newEntity)
+                {
+                    if (documentEntity.GetType() != newEntity.GetType() || documentEntity.Id != newEntity.Id)
+                    {
+                        return false;
+                    }
+                }
+                else if (first[i] != second[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Gets the document caption.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="documentAttribute">The document attribute.</param>
+        /// <returns></returns>
+        private string GetDocumentCaption(UserControl? document, DocumentAttribute? documentAttribute)
+        {
+            string documentCaption = document?.ToString() ?? ApplicationConstants.UNDEFINED;
+
+            if (document is not IEntityDetail && documentAttribute != null && !string.IsNullOrEmpty(documentAttribute.DocumentName))
+            {
+                documentCaption = documentAttribute.DocumentName;
+            }
+
+            return documentCaption;
+        }
         #endregion
 
         #region Event handlers
@@ -296,6 +341,19 @@ namespace QProject.Classes
         public void OnDocumentClosing(UserControl document)
         {
             DeleteGroupItemAccordionElement(document);
+        }
+
+        /// <summary>
+        /// Handles the ElementClick event of the _accordionControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ElementClickEventArgs"/> instance containing the event data.</param>
+        private void _accordionControl_ElementClick(object sender, ElementClickEventArgs e)
+        {
+            if (e.Element.Tag is UserControl userControl && _tabbedView != null)
+            {
+                _tabbedView.ActivateDocument(userControl);
+            }
         }
         #endregion
     }

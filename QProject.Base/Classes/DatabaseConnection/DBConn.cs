@@ -1,9 +1,10 @@
-﻿using SqlKata.Compilers;
-using SqlKata.Execution;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using QProject.Base.Exceptions.DatabaseConnection;
+using QProject.Shared.Attributes;
+using QProject.Shared.Extensions;
 using SqlKata;
-using Shared.Extensions;
-using Shared.Attributes;
+using SqlKata.Compilers;
+using SqlKata.Execution;
 
 namespace QProject.Base.DatabaseConnection
 {
@@ -64,9 +65,23 @@ namespace QProject.Base.DatabaseConnection
         /// </summary>
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
         /// <returns></returns>
-        public IEnumerable<TEntity> GetAll<TEntity>() where TEntity : Entity
+        public IEnumerable<TEntity> GetAll<TEntity>(bool queryOnView = false) where TEntity : Entity
         {
-            return CreateQuery<TEntity>()?.Get<TEntity>() ?? new List<TEntity>();
+            return CreateQuery<TEntity>(queryOnView)?.Get<TEntity>() ?? new List<TEntity>();
+        }
+
+        /// <summary>
+        /// Gets the entities which match the criteria.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="columnName">Name of the column.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="op">The op.</param>
+        /// <param name="queryOnView">The query on the view.</param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> GetWhere<TEntity>(string columnName, object value, string op = "=", bool queryOnView = false) where TEntity : Entity
+        {
+            return CreateQuery<TEntity>(queryOnView)?.Where(columnName, op, value).Get<TEntity>() ?? new List<TEntity>();
         }
 
         /// <summary>
@@ -109,7 +124,7 @@ namespace QProject.Base.DatabaseConnection
         /// <returns></returns>
         public int GetCount<TEntity>(string? columnName = null, object? value = null, string op = "=") where TEntity : Entity
         {
-            if(string.IsNullOrEmpty(columnName))
+            if (string.IsNullOrEmpty(columnName))
             {
                 return CreateQuery<TEntity>()?.Where(columnName, op, value).Count<int>() ?? 0;
             }
@@ -118,11 +133,11 @@ namespace QProject.Base.DatabaseConnection
         }
 
         /// <summary>
-        /// Gets the query factory.
+        /// Creates the query.
         /// </summary>
-        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="tableName">Name of the table.</param>
         /// <returns></returns>
-        public Query? CreateQuery<TEntity>()
+        public Query? CreateQuery(string tableName)
         {
             try
             {
@@ -131,7 +146,29 @@ namespace QProject.Base.DatabaseConnection
 
                 QueryFactory queryFactory = new(mySqlConnection, new MySqlCompiler());
 
-                return queryFactory.Query(GetEntityTableName<TEntity>());
+                return queryFactory.Query(tableName);
+            }
+            catch { }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Creates the query.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="queryOnView">if set to <c>true</c> [query on view].</param>
+        /// <returns></returns>
+        public Query? CreateQuery<TEntity>(bool queryOnView = false)
+        {
+            try
+            {
+                MySqlConnection mySqlConnection = new(_connectionString);
+                mySqlConnection.Open();
+
+                QueryFactory queryFactory = new(mySqlConnection, new MySqlCompiler());
+
+                return queryFactory.Query(GetEntityTableName<TEntity>(queryOnView));
             }
             catch { }
 
@@ -142,10 +179,22 @@ namespace QProject.Base.DatabaseConnection
         /// Gets the entity related database table.
         /// </summary>
         /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="queryOnView">if set to <c>true</c> [query on view].</param>
         /// <returns></returns>
-        private string GetEntityTableName<TEntity>()
+        /// <exception cref="QProject.Base.Exceptions.DatabaseConnection.RelatedDatabaseObjectNotDefinedException"></exception>
+        public static string GetEntityTableName<TEntity>(bool queryOnView = false)
         {
-            return typeof(TEntity).GetAttributeValue((DatabaseTable dt) => dt.TableName) ?? "";
+            DatabaseTable? databaseTable = typeof(TEntity).GetAttribute<DatabaseTable>();
+
+            if (databaseTable != null)
+            {
+                if (queryOnView)
+                    return databaseTable.ViewName ?? databaseTable.TableName;
+
+                return databaseTable.TableName;
+            }
+
+            throw new RelatedDatabaseObjectNotDefinedException();
         }
         #endregion
     }

@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
 
-namespace Shared.Helpers
+namespace QProject.Shared.Helpers
 {
     public class StringHelpers
     {
+        #region Methods
         /// <summary>
         /// Replaces the variables with values from data source.
         /// </summary>
@@ -31,5 +32,6 @@ namespace Shared.Helpers
 
             return result;
         }
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using QProject.Templates.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace QProject.UI.Projects
 {
-    public partial class ucProjectDetailFinancial : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucProjectDetailFinancial : ucTemplateDetail
     {
         public ucProjectDetailFinancial()
         {

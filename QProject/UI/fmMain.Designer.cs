@@ -40,6 +40,7 @@
             this.biOpenWorkingProjects = new DevExpress.XtraBars.BarButtonItem();
             this.biOpenFinishedProjects = new DevExpress.XtraBars.BarButtonItem();
             this.biOpenCanceledProjects = new DevExpress.XtraBars.BarButtonItem();
+            this.biProjectComplexOverview = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -48,6 +49,7 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -88,9 +90,10 @@
             this.biCreateNewProject,
             this.biOpenWorkingProjects,
             this.biOpenFinishedProjects,
-            this.biOpenCanceledProjects});
+            this.biOpenCanceledProjects,
+            this.biProjectComplexOverview});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 11;
+            this.ribbonControl1.MaxItemId = 12;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -190,6 +193,13 @@
             this.biOpenCanceledProjects.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText;
             this.biOpenCanceledProjects.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.RibbonItem_Click);
             // 
+            // biProjectComplexOverview
+            // 
+            this.biProjectComplexOverview.Caption = "Komplexní přehled";
+            this.biProjectComplexOverview.Id = 11;
+            this.biProjectComplexOverview.Name = "biProjectComplexOverview";
+            this.biProjectComplexOverview.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.RibbonItem_Click);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -234,7 +244,8 @@
             // ribbonPage2
             // 
             this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup11});
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "Projekty";
             // 
@@ -246,6 +257,12 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.biOpenCanceledProjects);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Hlavní akce";
+            // 
+            // ribbonPageGroup11
+            // 
+            this.ribbonPageGroup11.ItemLinks.Add(this.biProjectComplexOverview);
+            this.ribbonPageGroup11.Name = "ribbonPageGroup11";
+            this.ribbonPageGroup11.Text = "Statistiky";
             // 
             // ribbonPage4
             // 
@@ -368,6 +385,10 @@
             this.documentManager1.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedView1});
             // 
+            // tabbedView1
+            // 
+            this.tabbedView1.DocumentClosing += new DevExpress.XtraBars.Docking2010.Views.DocumentCancelEventHandler(this.tabbedView1_DocumentClosing);
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -432,5 +453,7 @@
         private DevExpress.XtraBars.BarButtonItem biOpenWorkingProjects;
         private DevExpress.XtraBars.BarButtonItem biOpenFinishedProjects;
         private DevExpress.XtraBars.BarButtonItem biOpenCanceledProjects;
+        private DevExpress.XtraBars.BarButtonItem biProjectComplexOverview;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;
     }
 }

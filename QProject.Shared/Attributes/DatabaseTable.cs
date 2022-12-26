@@ -1,8 +1,9 @@
-﻿namespace Shared.Attributes
+﻿namespace QProject.Shared.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class DatabaseTable : Attribute
     {
+        #region Properties and fields
         /// <summary>
         /// Gets or sets the name of the table.
         /// </summary>
@@ -18,5 +19,6 @@
         /// The name of the view.
         /// </value>
         public string? ViewName { get; set; }
+        #endregion
     }
 }

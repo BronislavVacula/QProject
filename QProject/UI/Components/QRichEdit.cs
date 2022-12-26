@@ -1,8 +1,9 @@
 ﻿using DevExpress.XtraEditors;
+using System.ComponentModel;
 
 namespace QProject.UI.Components
 {
-    public partial class QRichEdit : XtraUserControl
+    public partial class QRichEdit : XtraUserControl, INotifyPropertyChanged
     {
         #region Properties and fields        
         /// <summary>
@@ -19,9 +20,21 @@ namespace QProject.UI.Components
         /// </summary>
         public override string Text 
         { 
-            get => richEditControl1.Text; 
-            set => richEditControl1.Text = value; 
+            get => richEditControl1.Text;
+            set
+            {
+                richEditControl1.Text = value;
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Text)));
+            }
         }
+        #endregion
+
+        #region Events
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
         #endregion
 
         #region Constructor and initialization

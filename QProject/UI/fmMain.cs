@@ -5,13 +5,15 @@ using QProject.Base.Enums.Projects;
 using QProject.BL.Facade.Administration;
 using QProject.Classes;
 using QProject.Classes.DocumentManager;
+using QProject.Interfaces;
+using QProject.Templates.Controls;
 using QProject.UI;
 
 namespace QProject
 {
     public partial class fmMain : RibbonForm
     {
-        #region Properties and fields        
+        #region Properties and fields       
         #endregion
 
         #region Constructor and initialization
@@ -92,10 +94,11 @@ namespace QProject
         /// </summary>
         private void InitProjectsMenuItems()
         {
-            biNewProject.Tag = biCreateNewProject.Tag = new MenuItemForm<UI.Projects.Forms.fmNewProject>();
+            biNewProject.Tag = biCreateNewProject.Tag = new MenuItemForm<UI.Projects.Forms.fmNewProject>(true);
             biOpenWorkingProjects.Tag = new MenuItemUC<UI.Projects.ucProjectList>(new ProjectState[] { ProjectState.New, ProjectState.InProgress, ProjectState.Finished, ProjectState.AfterDeadline });
             biOpenFinishedProjects.Tag = new MenuItemUC<UI.Projects.ucProjectList>(new ProjectState[] { ProjectState.Finished });
             biOpenCanceledProjects.Tag = new MenuItemUC<UI.Projects.ucProjectList>(new ProjectState[] { ProjectState.Canceled });
+            biProjectComplexOverview.Tag = new MenuItemUC<UI.Projects.ucProjectsStatistics>();
         }
 
         /// <summary>
@@ -154,6 +157,23 @@ namespace QProject
             {
                 menuItem.Open();
             }
+        }
+
+        /// <summary>
+        /// Handles the DocumentClosing event of the tabbedView1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DevExpress.XtraBars.Docking2010.Views.DocumentCancelEventArgs"/> instance containing the event data.</param>
+        private void tabbedView1_DocumentClosing(object sender, DevExpress.XtraBars.Docking2010.Views.DocumentCancelEventArgs e)
+        {
+            bool isNotDetail = e.Document.Control is not IEntityDetail;
+            bool modificationFinished = e.Document.Control is IEntityDetail detail && detail.CloseContent();
+
+            if (e.Document.Control is UserControl closingUC && (isNotDetail || modificationFinished))
+            {
+                DocumentManagerEx.Instance.CloseDocument(closingUC, false);
+            }
+            else e.Cancel = true;
         }
 
         /// <summary>

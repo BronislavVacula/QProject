@@ -4,6 +4,11 @@ namespace QProject.Templates.Interfaces
 {
     internal interface ITemplate : IReloadable
     {
+        #region Properties and fields
+        Entity? RelatedEntity { get; }
+        #endregion
+
+        #region Methods
         void Init();
         void InitComboBoxes();
         void InitBinding();
@@ -15,13 +20,6 @@ namespace QProject.Templates.Interfaces
 
         void LoadContent();
         void SaveContent();
-
-        /// <summary>
-        /// Gets the related entity.
-        /// </summary>
-        /// <value>
-        /// The related entity.
-        /// </value>
-        Entity? RelatedEntity { get; }
+        #endregion
     }
 }

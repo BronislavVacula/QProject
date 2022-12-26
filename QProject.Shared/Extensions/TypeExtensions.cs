@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
+﻿using QProject.Shared.Attributes;
+using System.ComponentModel;
 using System.Reflection;
 
-namespace Shared.Extensions
+namespace QProject.Shared.Extensions
 {
     public static class TypeExtensions
     {
+        #region Methods
         /// <summary>Gets the attribute.</summary>
         /// <typeparam name="AttributeType">The type of the attribute.</typeparam>
         /// <param name="objectType">Type of the object.</param>
@@ -81,5 +83,59 @@ namespace Shared.Extensions
 
             return enumValue.ToString();
         }
+
+        /// <summary>
+        /// Gets the property value.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns></returns>
+        public static object? GetPropertyValue(this object item, string propertyName)
+        {
+            PropertyInfo? property = item.GetType().GetProperty(propertyName);
+
+            if (property != null)
+            {
+                return property.GetValue(item);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Sets the property value.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static void SetPropertyValue(this object item, string propertyName, object? value)
+        {
+            PropertyInfo? property = item.GetType().GetProperty(propertyName);
+
+            if (property != null)
+            {
+                property.SetValue(item, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets the table column attribute.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns></returns>
+        public static DatabaseColumn? GetTableColumnAttribute(this object item, string propertyName)
+        {
+            PropertyInfo? property = item.GetType().GetProperty(propertyName);
+
+            if (property != null)
+            {
+                return property.GetCustomAttribute<DatabaseColumn>();
+            }
+
+            return null;
+        }
+        #endregion
     }
 }

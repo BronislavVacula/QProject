@@ -2,6 +2,7 @@
 {
     public interface ISmtpSettings
     {
+        #region Properties and fields
         string? Server { get; }
         uint? Port { get; }
 
@@ -10,5 +11,6 @@
 
         bool EnableSSL { get; }
         string? SenderEmailAddress { get; }
+        #endregion
     }
 }

@@ -2,18 +2,18 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DevExpress.Win.Design" Version="22.1.4" />
+    <PackageReference Include="DevExpress.Win.Design" Version="22.1.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="Controls\Devexpress\" />
     <Folder Include="UI\Administration\" />
     <Folder Include="UI\Agenda\Detail\" />
     <Folder Include="UI\Agenda\Settings\" />
@@ -24,6 +24,22 @@
   <ItemGroup>
     <ProjectReference Include="..\QProject.Base\QProject.Base.csproj" />
     <ProjectReference Include="..\QProject.BL\QProject.BL.csproj" />
+    <ProjectReference Include="..\QProject.Shared\QProject.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

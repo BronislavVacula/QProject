@@ -3,6 +3,7 @@
     [AttributeUsage(AttributeTargets.Class)]
     public class DocumentAttribute : Attribute
     {
+        #region Properties and fields
         /// <summary>
         /// Gets or sets the name of the group.
         /// </summary>
@@ -26,5 +27,6 @@
         /// The description.
         /// </value>
         public string? Description { get; set; }
+        #endregion
     }
 }

@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ucProjectDetailFinancial
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.DoubleBuffered = true;
+            this.Name = "ucProjectDetailFinancial";
+            this.Size = new System.Drawing.Size(931, 645);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

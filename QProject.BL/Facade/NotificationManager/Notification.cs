@@ -1,4 +1,4 @@
-﻿using Shared.Helpers;
+﻿using QProject.Shared.Helpers;
 
 namespace QProject.BL
 {

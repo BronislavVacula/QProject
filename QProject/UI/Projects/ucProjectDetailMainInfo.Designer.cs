@@ -96,14 +96,14 @@
             this.groupTerms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel5)).BeginInit();
             this.tablePanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.deRealFinish.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deRealFinish.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deRealStart.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deRealFinish.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deRealStart.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deDeadline.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deRealStart.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deDeadline.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dePlanStart.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deDeadline.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dePlanStart.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dePlanStart.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupFinancial)).BeginInit();
             this.groupFinancial.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel4)).BeginInit();
@@ -188,6 +188,7 @@
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.tablePanel1.SetRow(this.cbCategory, 1);
             this.cbCategory.Size = new System.Drawing.Size(179, 20);
             this.cbCategory.TabIndex = 7;
@@ -291,6 +292,7 @@
             this.cbCustomer.Name = "cbCustomer";
             this.cbCustomer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbCustomer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.tablePanel2.SetRow(this.cbCustomer, 1);
             this.cbCustomer.Size = new System.Drawing.Size(364, 20);
             this.cbCustomer.TabIndex = 8;
@@ -398,6 +400,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deRealFinish.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deRealFinish.Properties.ReadOnly = true;
             this.tablePanel5.SetRow(this.deRealFinish, 3);
             this.deRealFinish.Size = new System.Drawing.Size(221, 20);
             this.deRealFinish.TabIndex = 17;
@@ -412,6 +415,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deRealStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.deRealStart.Properties.ReadOnly = true;
             this.tablePanel5.SetRow(this.deRealStart, 3);
             this.deRealStart.Size = new System.Drawing.Size(221, 20);
             this.deRealStart.TabIndex = 16;
@@ -537,9 +541,11 @@
             this.seRealExpenses.Name = "seRealExpenses";
             this.seRealExpenses.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.seRealExpenses.Properties.ReadOnly = true;
             this.tablePanel4.SetRow(this.seRealExpenses, 3);
             this.seRealExpenses.Size = new System.Drawing.Size(221, 20);
             this.seRealExpenses.TabIndex = 13;
+            this.seRealExpenses.EditValueChanged += new System.EventHandler(this.seFianncial_ValueChanged);
             // 
             // labelRealExpenses
             // 
@@ -590,6 +596,7 @@
             this.seMoneyState.Name = "seMoneyState";
             this.seMoneyState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.seMoneyState.Properties.ReadOnly = true;
             this.tablePanel4.SetRow(this.seMoneyState, 5);
             this.seMoneyState.Size = new System.Drawing.Size(448, 20);
             this.seMoneyState.TabIndex = 12;
@@ -606,9 +613,11 @@
             this.seRealEarnings.Name = "seRealEarnings";
             this.seRealEarnings.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.seRealEarnings.Properties.ReadOnly = true;
             this.tablePanel4.SetRow(this.seRealEarnings, 3);
             this.seRealEarnings.Size = new System.Drawing.Size(221, 20);
             this.seRealEarnings.TabIndex = 12;
+            this.seRealEarnings.ValueChanged += new System.EventHandler(this.seFianncial_ValueChanged);
             // 
             // sePlanEarnings
             // 
